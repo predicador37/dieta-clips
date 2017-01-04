@@ -81,3 +81,11 @@ Prueba de concepto
 Listado de alimentos que aportan el rcd
 
 
+#IDEAS
+- Dividir grupos de alimentos en subgrupos, según su aporte
+- Cambiar alimentos para ajustar los subgrupos
+- OK Introducir grasas
+- Mirar por qué no se elige el más adecuado en cada iteración
+- ¿Cuál es el más adecuado?
+- Implementar comprobación de grupos (máximos)
+- Introducir más raciones de los mismos alimentos en la base de hechos para tener más donde seleccionar
