@@ -1,0 +1,9 @@
+(load "E://dieta-clips//hechos_iniciales.clp")
+(reset)
+(load "E://dieta-clips//dieta_old.clp")
+(run)
+
+(load "V://informatica//code//dieta-clips//hechos_iniciales.clp")
+(reset)
+(load "V://informatica//code//dieta-clips//dieta_old.clp")
+(run)
