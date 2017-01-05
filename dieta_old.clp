@@ -128,17 +128,18 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 1)
          ?ultimos <- (alimentos-usados (grupo1 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 1))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= ?kcal-alimento ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
 
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo1 (+ ?grupo1 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo1 (+ ?grupo1 1)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo1 $?usados ?nombre-alimento))
          (assert (fase grupo2))
@@ -150,16 +151,17 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 2)
          ?ultimos <- (alimentos-usados (grupo2 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 2))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= (* ?kcal-alimento 2) ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo2 (+ ?grupo2 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo2 (+ ?grupo2 1)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo2 $?usados ?nombre-alimento))
          (assert (fase grupo3))
@@ -171,16 +173,17 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 3)
          ?ultimos <- (alimentos-usados (grupo3 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 3))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= ?kcal-alimento ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo3 $?usados ?nombre-alimento))
          (assert (fase grupo4))
@@ -192,16 +195,17 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 4)
          ?ultimos <- (alimentos-usados (grupo4 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 4))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= ?kcal-alimento ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo4 (+ ?grupo4 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo4 (+ ?grupo4 1)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo4 $?usados ?nombre-alimento))
          (assert (fase grupo5))
@@ -213,16 +217,17 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 5)
          ?ultimos <- (alimentos-usados (grupo5 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 5))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= ?kcal-alimento ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo5 (+ ?grupo5 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo5 (+ ?grupo5 1)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo5 $?usados ?nombre-alimento))
          (assert (fase grupo6))
@@ -234,16 +239,17 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 6)
          ?ultimos <- (alimentos-usados (grupo6 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 6))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= ?kcal-alimento ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo6 $?usados ?nombre-alimento))
          (assert (fase grupo7))
@@ -254,16 +260,17 @@
          ;(racion (cantidad ?racion))
          ?gi <- (grupo-inicial 7)
          ?ultimos <- (alimentos-usados (grupo7 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          (rcd ?rcd)
          ?d <- (dieta (dia lunes) (kcal 0) (kcal-proteinas ?kcal-proteinas) (grupo1 ?grupo1)
-                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
+                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7) (gramos-grasa ?gramos-grasa))
          ?a <- (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento) (proteinas ?proteinas) (grupo 7))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) 0) ?rcd))
          ;(test (<= ?kcal-alimento ?rcd))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          =>
 
-         (modify ?d (alimentos ?nombre-alimento) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo7 (+ ?grupo7 1)))
+         (modify ?d (alimentos ?nombre-alimento ?racion) (kcal (/ (* ?kcal-alimento ?racion) 100)) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo7 (+ ?grupo7 1))(gramos-grasa (+ ?gramos-grasa ?racion)))
          ;(modify ?a (lunes ?racion))
          (modify ?ultimos (grupo7 $?usados ?nombre-alimento))
          (assert (fase grupo1))
@@ -275,6 +282,7 @@
 
 (defrule configurar-dieta-1 "Elige un alimento del grupo 1 al azar"
          ?ultimos <- (alimentos-usados (grupo1 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?fase <- (fase grupo1)
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
@@ -282,23 +290,36 @@
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 1))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                    (and (> (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                         (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.15 ?rcd)))))
-
+         (test (< ?grupo1 3))
          =>
 
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo1 (+ ?grupo1 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo1 (+ ?grupo1 1)))
          (modify ?ultimos (grupo1 $?usados ?nombre-alimento))
          (retract ?fase)
          (assert (fase grupo2))
 
          )
 ;---------------------------------------------------------------------------
+(defrule configurar-dieta-1-no-mas "No elige mas alimentos del grupo 1"
+         ?fase <- (fase grupo1)
+
+         ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
+
+         (test (= ?grupo1 3))
+         =>
+         (retract ?fase)
+         (assert (fase grupo2))
+         )
+;---------------------------------------------------------------------------
 (defrule configurar-dieta-1-no-proteinas "Elige un alimento del grupo 1 al azar y se pasa de proteinas"
          ?ultimos <- (alimentos-usados (grupo1 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?fase <- (fase grupo1)
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
@@ -306,7 +327,7 @@
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 1))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (not (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                    (and (> (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
@@ -320,12 +341,14 @@
 ;---------------------------------------------------------------------------
 (defrule configurar-dieta-1-no "Elige un alimento del grupo 1 al azar y no se cumple requisito calorico"
          ?fase <- (fase grupo1)
+         ?ultimos <- (alimentos-usados (grupo1 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 1))
-         (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>
@@ -351,22 +374,23 @@
 (defrule configurar-dieta-2 "Elige un alimento del grupo 2 al azar"
          ?fase <- (fase grupo2)
          ?ultimos <- (alimentos-usados (grupo2 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 2))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                    (and (> (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                         (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.15 ?rcd)))))
          ;con dos alimentos del grupo 2 satisfacemos la cuota de proteinas
-         (test (< ?grupo2 2))
+         (test (< ?grupo2 3))
          =>
          ;alimentos del grupo 2, raciones de 200g
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo2 (+ ?grupo2 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo2 (+ ?grupo2 1)))
          (modify ?ultimos (grupo2 $?usados ?nombre-alimento))
          (retract ?fase)
          (assert (fase grupo3))
@@ -379,7 +403,7 @@
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (test (= ?grupo2 2))
+         (test (= ?grupo2 3))
          =>
          (retract ?fase)
          (assert (fase grupo3))
@@ -388,12 +412,15 @@
 
 (defrule configurar-dieta-2-no "Elige un alimento del grupo 2 al azar y no se cumple requisito calorico"
          ?fase <- (fase grupo2)
+         ?ultimos <- (alimentos-usados (grupo2 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 2))
          (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>
@@ -420,13 +447,14 @@
 (defrule configurar-dieta-3 "Elige un alimento del grupo 3 al azar"
          ?fase <- (fase grupo3)
          ?ultimos <- (alimentos-usados (grupo3 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 3))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (< ?grupos36 6))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
@@ -436,7 +464,7 @@
 
          =>
 
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
          (modify ?ultimos (grupo3 $?usados ?nombre-alimento))
          (retract ?fase)
          (assert (fase grupo4))
@@ -458,12 +486,15 @@
 
 (defrule configurar-dieta-3-no "Elige un alimento del grupo 3 al azar y no se cumple requisito calorico"
          ?fase <- (fase grupo3)
+         ?ultimos <- (alimentos-usados (grupo3 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 3))
          (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>
@@ -473,7 +504,7 @@
          )
 
 ;----------------------------------------------------------------------------
-(defrule configurar-dieta-3-check "Comprobar si se ha acabado correctamente, caso afirmativo"
+(defrule configurar-dieta-3-check "Grupo 3, comprobar si se ha acabado correctamente, caso afirmativo"
          ?fase <- (fase grupo3-check)
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
@@ -503,7 +534,7 @@
          )
 
 ;----------------------------------------------------------------------------
-(defrule configurar-dieta-3-check-no "Comprobar si se ha acabado correctamente, caso negativo"
+(defrule configurar-dieta-3-check-no "Grupo 3, comprobar si se ha acabado correctamente, caso negativo"
          ?fase <- (fase grupo3-check)
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
@@ -521,35 +552,53 @@
 (defrule configurar-dieta-4 "Elige un alimento del grupo 4 al azar"
          ?fase <- (fase grupo4)
          ?ultimos <- (alimentos-usados (grupo4 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 4))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                    (and (> (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                         (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.15 ?rcd)))))
+         (test (< ?grupo4 4))
          =>
 
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo4 (+ ?grupo4 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo4 (+ ?grupo4 1)))
          (modify ?ultimos (grupo4 $?usados ?nombre-alimento))
          (retract ?fase)
          (assert (fase grupo5))
          )
 
+;---------------------------------------------------------------------------
+(defrule configurar-dieta-4-no-mas "No elige mas alimentos del grupo 4"
+         ?fase <- (fase grupo4)
+
+         ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
+
+         (test (= ?grupo4 4))
+         =>
+         (retract ?fase)
+         (assert (fase grupo5))
+         )
 ;----------------------------------------------------------------------------
+
 
 (defrule configurar-dieta-4-no "Elige un alimento del grupo 4 al azar y no se cumple el requisito calorico"
          ?fase <- (fase grupo4)
+         ?ultimos <- (alimentos-usados (grupo4 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 4))
          (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>
@@ -576,22 +625,35 @@
 (defrule configurar-dieta-5 "Elige un alimento del grupo 5 al azar"
          ?fase <- (fase grupo5)
          ?ultimos <- (alimentos-usados (grupo5 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 5))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                    (and (> (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                         (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.15 ?rcd)))))
-
+         (test (< ?grupo5 3))
          =>
 
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo5 (+ ?grupo5 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo5 (+ ?grupo5 1)))
          (modify ?ultimos (grupo5 $?usados ?nombre-alimento))
+         (retract ?fase)
+         (assert (fase grupo6))
+         )
+;---------------------------------------------------------------------------
+(defrule configurar-dieta-5-no-mas "No elige mas alimentos del grupo 5"
+         ?fase <- (fase grupo5)
+
+         ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
+
+         (test (= ?grupo5 3))
+         =>
          (retract ?fase)
          (assert (fase grupo6))
          )
@@ -600,12 +662,15 @@
 
 (defrule configurar-dieta-5-no "Elige un alimento del grupo 5 al azar y no se cumple el requisito calorico"
          ?fase <- (fase grupo5)
+         ?ultimos <- (alimentos-usados (grupo5 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 5))
          (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>
@@ -630,15 +695,17 @@
 ;----------------------------------------------------------------------------
 
 (defrule configurar-dieta-6 "Elige un alimento del grupo 6 al azar"
+         (declare (salience 3))
          ?fase <- (fase grupo6)
          ?ultimos <- (alimentos-usados (grupo6 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 6))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
          (test (< ?grupos36 6))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
@@ -646,7 +713,7 @@
                         (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.15 ?rcd)))))
          =>
 
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupos36 (+ ?grupos36 1)))
          (modify ?ultimos (grupo6 $?usados ?nombre-alimento))
          (retract ?fase)
          (assert (fase grupo7))
@@ -654,6 +721,7 @@
 
 ;----------------------------------------------------------------------------
 (defrule configurar-dieta-6-no-mas "No elige mas alimentos del grupo 6"
+         (declare (salience 2))
          ?fase <- (fase grupo6)
 
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
@@ -667,12 +735,15 @@
 
 (defrule configurar-dieta-6-no "Elige un alimento del grupo 6 al azar y no se cumple el requisito calorico"
          ?fase <- (fase grupo6)
+         ?ultimos <- (alimentos-usados (grupo6 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 6))
          (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>
@@ -701,21 +772,23 @@
 (defrule configurar-dieta-7 "Elige un alimento del grupo 7 al azar"
          ?fase <- (fase grupo7)
          ?ultimos <- (alimentos-usados (grupo7 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos)(grupo1 ?grupo1)
-                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7)(gramos-grasa ?gramos-grasa))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 7))
          (test (not (member$ ?nombre-alimento $?alimentos)))
-         (test (not (member$ ?nombre-alimento $?usados)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
         ; (test (< ?grupos36 6))
+         (test (< (+ ?gramos-grasa ?racion) 60))
          (test (or (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                    (and (> (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.1 ?rcd))
                         (<= (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100)) (* 0.15 ?rcd)))))
          =>
 
-         (modify ?d (alimentos $?alimentos ?nombre-alimento) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo7 (+ ?grupo7 1)))
+         (modify ?d (alimentos $?alimentos ?nombre-alimento ?racion) (kcal (+ ?kcal (/ (* ?kcal-alimento ?racion) 100))) (kcal-proteinas (+ ?kcal-proteinas (/ (* ?proteinas 4 ?racion) 100))) (grupo7 (+ ?grupo7 1))(gramos-grasa (+ ?gramos-grasa ?racion)))
          (modify ?ultimos (grupo7 $?usados ?nombre-alimento))
          (retract ?fase)
          (assert (fase grupo1))
@@ -726,8 +799,10 @@
          ?fase <- (fase grupo7)
 
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (alimentos $?alimentos)(grupo1 ?grupo1)
-                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
-         ;(test (= ?grupos36 6))
+                      (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7)(gramos-grasa ?gramos-grasa))
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
+                   (proteinas ?proteinas) (grupo 7))
+         (test (> (+ ?gramos-grasa ?racion) 60))
          =>
          (retract ?fase)
          (assert (fase grupo1))
@@ -736,12 +811,15 @@
 
 (defrule configurar-dieta-7-no "Elige un alimento del grupo 7 al azar y no se cumple el requisito calorico"
          ?fase <- (fase grupo7)
+         ?ultimos <- (alimentos-usados (grupo7 $?usados))
+         (repetibles (alimentos $?alimentos-repetibles))
          ?d <- (dieta (dia lunes) (kcal ?kcal) (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
          (rcd ?rcd)
          (alimento (id ?id-alimento) (nombre ?nombre-alimento) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas) (grupo 7))
          (test (not (member$ ?nombre-alimento $?alimentos)))
+         (test (or (not (member$ ?nombre-alimento $?usados)) (member$ ?nombre-alimento $?alimentos-repetibles)))
          (test (> (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
 
          =>

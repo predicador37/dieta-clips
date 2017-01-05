@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="811d9d7f-aee9-4459-855b-580843781248" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ejecucion" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/snippets" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dieta.clp" afterPath="$PROJECT_DIR$/dieta.clp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dieta_old.clp" afterPath="$PROJECT_DIR$/dieta_old.clp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hechos_iniciales.clp" afterPath="$PROJECT_DIR$/hechos_iniciales.clp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/memoria_practica.md" afterPath="$PROJECT_DIR$/memoria_practica.md" />
     </list>
     <ignored path="dieta-clips.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,8 +37,8 @@
       <file leaf-file-name="dieta_old.clp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dieta_old.clp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-900">
-              <caret line="120" column="38" lean-forward="false" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
+            <state relative-caret-position="489">
+              <caret line="723" column="29" lean-forward="false" selection-start-line="723" selection-start-column="29" selection-end-line="723" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -58,12 +54,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="memoria_practica.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="memoria_practica.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/memoria_practica.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="810">
-                <caret line="90" column="103" lean-forward="false" selection-start-line="90" selection-start-column="103" selection-end-line="90" selection-end-column="103" />
+              <first_editor relative-caret-position="630">
+                <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -77,18 +73,18 @@
       <file leaf-file-name="ejecucion" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ejecucion">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+            <state relative-caret-position="105">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hechos_iniciales.clp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hechos_iniciales.clp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hechos_iniciales.clp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-137">
-              <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+            <state relative-caret-position="849">
+              <caret line="443" column="0" lean-forward="true" selection-start-line="443" selection-start-column="0" selection-end-line="443" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -100,6 +96,7 @@
     <findStrings>
       <find>fase grupo2</find>
       <find>configurar-dieta-2-no</find>
+      <find>miel</find>
       <find>grupos7</find>
     </findStrings>
   </component>
@@ -121,10 +118,10 @@
       <list>
         <option value="$PROJECT_DIR$/dieta.clp" />
         <option value="$PROJECT_DIR$/ejecucion" />
-        <option value="$PROJECT_DIR$/dieta_old.clp" />
-        <option value="$PROJECT_DIR$/hechos_iniciales.clp" />
         <option value="$PROJECT_DIR$/snippets" />
         <option value="$PROJECT_DIR$/memoria_practica.md" />
+        <option value="$PROJECT_DIR$/dieta_old.clp" />
+        <option value="$PROJECT_DIR$/hechos_iniciales.clp" />
       </list>
     </option>
   </component>
@@ -643,12 +640,12 @@
       <workItem from="1483136869210" duration="28185000" />
       <workItem from="1483517689034" duration="132000" />
       <workItem from="1483517850790" duration="572000" />
-      <workItem from="1483518560549" duration="18149000" />
+      <workItem from="1483518560549" duration="28789000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47252000" />
+    <option name="totallyTimeSpent" value="57892000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="27" width="2050" height="1126" extended-state="6" />
@@ -842,35 +839,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dieta_old.clp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-900">
-          <caret line="120" column="38" lean-forward="false" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/hechos_iniciales.clp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-137">
-          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ejecucion">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" lean-forward="false" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/memoria_practica.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="810">
-            <caret line="90" column="103" lean-forward="false" selection-start-line="90" selection-start-column="103" selection-end-line="90" selection-end-column="103" />
+          <first_editor relative-caret-position="630">
+            <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
@@ -878,6 +851,30 @@
       </provider>
       <provider editor-type-id="MarkdownFxPreviewEditor">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ejecucion">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dieta_old.clp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="723" column="29" lean-forward="false" selection-start-line="723" selection-start-column="29" selection-end-line="723" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hechos_iniciales.clp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="849">
+          <caret line="443" column="0" lean-forward="true" selection-start-line="443" selection-start-column="0" selection-end-line="443" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
