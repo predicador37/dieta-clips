@@ -32,11 +32,13 @@
 
 (deftemplate dieta
              (slot dia (type SYMBOL) (allowed-symbols lunes martes miercoles jueves viernes))
+             (slot estado (type SYMBOL) (allowed-values cerrado abierto solucion) (default abierto))
              (slot kcal (type NUMBER) (default 0))
              (slot kcal-proteinas (type NUMBER) (default 0))
              (slot kcal-hidratos (type NUMBER) (default 0))
+             (slot kcal-grasas (type NUMBER) (default 0))
              (slot gramos-grasa (type NUMBER) (default 0))
-             (multislot alimentos (type SYMBOL))
+             (slot total-alimentos (type INTEGER) (default 0))
              (slot grupo1 (type INTEGER) (default 0))
              (slot grupo2 (type INTEGER) (default 0))
              (slot grupos36 (type INTEGER) (default 0))
@@ -44,7 +46,7 @@
              (slot grupo5 (type INTEGER) (default 0))
              (slot grupo6 (type INTEGER) (default 0))
              (slot grupo7 (type INTEGER) (default 0))
-
+             (multislot alimentos (type SYMBOL))
              )
 
 (deftemplate alimentos-usados
@@ -86,11 +88,11 @@
           )
 
 (deffacts introducir-personas
-          (persona (nombre Miguel) (apellidos Exposito Martin) (edad 7) (sexo masculino) (peso 83) (actividad moderada) (objetivo reducir))
+          (persona (nombre Miguel) (apellidos Exposito Martin) (edad 35) (sexo masculino) (peso 83) (actividad moderada) (objetivo reducir))
+          ;(persona (nombre Pepita) (apellidos Perez Lopez) (edad 38) (sexo masculino) (peso 64) (actividad ligera) (objetivo reducir))
           )
 
 (deffacts introducir-alimentos
-
           (alimento (id 1) (nombre edam) (grupo 1) (tipo plasticos) (racion 20) (kcal 306) (proteinas 26) (grasas 22) (hidratos 1) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
           (alimento (id 2) (nombre edam) (grupo 1) (tipo plasticos) (racion 25) (kcal 306) (proteinas 26) (grasas 22) (hidratos 1) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
           (alimento (id 3) (nombre edam) (grupo 1) (tipo plasticos) (racion 50) (kcal 306) (proteinas 26) (grasas 22) (hidratos 1) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
@@ -396,9 +398,9 @@
           (alimento (id 303) (nombre mantequilla) (grupo 7) (tipo energeticos) (racion 40) (kcal 750) (proteinas 0.6) (grasas 83) (hidratos 0.3) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 304) (nombre mantequilla) (grupo 7) (tipo energeticos) (racion 30) (kcal 750) (proteinas 0.6) (grasas 83) (hidratos 0.3) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 305) (nombre mantequilla) (grupo 7) (tipo energeticos) (racion 20) (kcal 750) (proteinas 0.6) (grasas 83) (hidratos 0.3) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena no))
-          (alimento (id 306) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 90) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
-          (alimento (id 307) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 80) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
-          (alimento (id 308) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 70) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
+          (alimento (id 306) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 55) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
+          (alimento (id 307) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 40) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
+          (alimento (id 308) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 45) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 309) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 60) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 310) (nombre nata-liquida) (grupo 7) (tipo energeticos) (racion 50) (kcal 422) (proteinas 1.7) (grasas 45) (hidratos 2.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 311) (nombre margarina) (grupo 7) (tipo energeticos) (racion 60) (kcal 747) (proteinas 0) (grasas 99) (hidratos 0.3) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena no))
@@ -413,7 +415,7 @@
           (alimento (id 320) (nombre manteca-de-cerdo) (grupo 7) (tipo energeticos) (racion 10) (kcal 891) (proteinas 0.3) (grasas 82.8) (hidratos 0.2) (desayuno no) (almuerzo no) (comida si) (merienda no) (cena no))
           (alimento (id 321) (nombre aceite-de-semillas) (grupo 7) (tipo energeticos) (racion 30) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 322) (nombre aceite-de-semillas) (grupo 7) (tipo energeticos) (racion 40) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena si))
-          (alimento (id 323) (nombre aceite-de-semillas) (grupo 7) (tipo energeticos) (racion 70) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena si))
+          (alimento (id 323) (nombre aceite-de-semillas) (grupo 7) (tipo energeticos) (racion 45) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 324) (nombre aceite-de-semillas) (grupo 7) (tipo energeticos) (racion 60) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 325) (nombre aceite-de-semillas) (grupo 7) (tipo energeticos) (racion 50) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 326) (nombre mayonesa) (grupo 7) (tipo energeticos) (racion 50) (kcal 800) (proteinas 1) (grasas 81.3) (hidratos 1.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
@@ -421,7 +423,7 @@
           (alimento (id 328) (nombre mayonesa) (grupo 7) (tipo energeticos) (racion 30) (kcal 800) (proteinas 1) (grasas 81.3) (hidratos 1.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 329) (nombre mayonesa) (grupo 7) (tipo energeticos) (racion 20) (kcal 800) (proteinas 1) (grasas 81.3) (hidratos 1.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
           (alimento (id 330) (nombre mayonesa) (grupo 7) (tipo energeticos) (racion 10) (kcal 800) (proteinas 1) (grasas 81.3) (hidratos 1.5) (desayuno no) (almuerzo si) (comida si) (merienda no) (cena no))
-          (alimento (id 331) (nombre aceite-de-palma) (grupo 7) (tipo energeticos) (racion 70) (kcal 899) (proteinas 0) (grasas 99.9) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena si))
+          (alimento (id 331) (nombre aceite-de-palma) (grupo 7) (tipo energeticos) (racion 45) (kcal 899) (proteinas 0) (grasas 99.9) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 332) (nombre aceite-de-palma) (grupo 7) (tipo energeticos) (racion 60) (kcal 899) (proteinas 0) (grasas 99.9) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 333) (nombre aceite-de-palma) (grupo 7) (tipo energeticos) (racion 30) (kcal 899) (proteinas 0) (grasas 99.9) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena si))
           (alimento (id 334) (nombre aceite-de-palma) (grupo 7) (tipo energeticos) (racion 40) (kcal 899) (proteinas 0) (grasas 99.9) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda no) (cena si))
@@ -438,14 +440,8 @@
           (alimento (id 336) (nombre manteca-de-cacao) (grupo 7) (tipo energeticos) (racion 50) (kcal 925) (proteinas 0) (grasas 94.5) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena no))
           (alimento (id 341) (nombre aceite-de-oliva) (grupo 7) (tipo energeticos) (racion 30) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
           (alimento (id 342) (nombre aceite-de-oliva) (grupo 7) (tipo energeticos) (racion 40) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
-          (alimento (id 343) (nombre aceite-de-oliva) (grupo 7) (tipo energeticos) (racion 70) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
+          (alimento (id 343) (nombre aceite-de-oliva) (grupo 7) (tipo energeticos) (racion 45) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
           (alimento (id 345) (nombre aceite-de-oliva) (grupo 7) (tipo energeticos) (racion 50) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
           (alimento (id 344) (nombre aceite-de-oliva) (grupo 7) (tipo energeticos) (racion 60) (kcal 900) (proteinas 0) (grasas 100) (hidratos 0) (desayuno si) (almuerzo si) (comida si) (merienda si) (cena si))
-
-
-
-
-
-
 
           )
