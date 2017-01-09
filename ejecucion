@@ -5,5 +5,5 @@
 
 (load "V://informatica//code//dieta-clips//hechos_iniciales.clp")
 (reset)
-(load "V://informatica//code//dieta-clips//dieta_old.clp")
+(load "V://informatica//code//dieta-clips//dieta.clp")
 (run)
