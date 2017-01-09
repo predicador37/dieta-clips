@@ -123,12 +123,14 @@
 
 (defrule operador-grupo-1 "Elige un alimento del grupo 1"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (kcal ?kcal)(total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 1))
          (test (< ?grupo1 3))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -157,12 +159,14 @@
 ;---------------------------------------------------------------------------
 (defrule operador-grupo-2 "Elige un alimento del grupo 2"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (kcal ?kcal)(total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 2))
          (test (< ?grupo2 3))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -191,12 +195,14 @@
 ;---------------------------------------------------------------------------
 (defrule operador-grupo-3 "Elige un alimento del grupo 3"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (kcal ?kcal)(total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 3))
          (test (< ?grupos36 6))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -225,12 +231,14 @@
 ;---------------------------------------------------------------------------
 (defrule operador-grupo-4 "Elige un alimento del grupo 4"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (kcal ?kcal)(total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 4))
          (test (< ?grupo4 4))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -259,12 +267,14 @@
 ;---------------------------------------------------------------------------
 (defrule operador-grupo-5 "Elige un alimento del grupo 5"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (kcal ?kcal) (total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 5))
          (test (< ?grupo5 3))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -293,12 +303,14 @@
 ;---------------------------------------------------------------------------
 (defrule operador-grupo-6 "Elige un alimento del grupo 6"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (kcal ?kcal)(total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 6))
          (test (< ?grupos36 6))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -328,12 +340,14 @@
 ;---------------------------------------------------------------------------
 (defrule operador-grupo-7 "Elige un alimento del grupo 7"
          (rcd ?rcd)
+         (usados (alimentos $?alimentos-usados))
          ?d <- (dieta (estado cerrado) (total-alimentos ?total-alimentos)
                       (kcal ?kcal) (kcal-proteinas ?kcal-proteinas)(kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5)(grupo7 ?grupo7))
 
-         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (not (member$ ?nombre-alimento $?alimentos))) (racion ?racion) (kcal ?kcal-alimento)
+         (alimento (id ?id-alimento) (nombre ?nombre-alimento&: (and (not (member$ ?nombre-alimento $?alimentos))
+                                             (not (member$ ?nombre-alimento $?alimentos-usados)))) (racion ?racion) (kcal ?kcal-alimento)
                    (proteinas ?proteinas)(grasas ?grasas)(hidratos ?hidratos) (grupo 7))
          (test (< (+ ?gramos-grasa ?racion) 60))
          (test (<= (+ (/ (* ?kcal-alimento ?racion) 100) ?kcal) ?rcd))
@@ -399,13 +413,191 @@
 ;         (modify ?d (estado cerrado))
 ;         )
 
+(defrule cierra-dieta-menor-costo-hidratos-1
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 1) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 1))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.5 )))
+         (test (>= ?kcal-hidratos (/ (* ?rcd 0.45) 6)))
+         (test (<= ?kcal-proteinas (* ?rcd 0.06 )))
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-hidratos-2
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 2) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 2))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.45 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.06 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-hidratos-3
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 3) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 3))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.45 )))
+         (test (>= ?kcal-hidratos (/ (* ?rcd 0.45) 2)))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-hidratos-4
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 4) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 4))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.45 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-hidratos-5
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 5) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 5))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.45 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-hidratos-6
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 6) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 6))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.45 )))
+         (test (>= ?kcal-hidratos  (* ?rcd 0.40) ))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-grupo4-1
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 6) (grupo4 1) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 7))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.5 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-grupo4-2
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 6) (grupo4 2) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 8))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.5 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-grupo4-3
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 6) (grupo4 3) (grupo5 ?grupo5) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 9))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.5 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.08 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-grupo5-1
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 6) (grupo4 3) (grupo5 1) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 10))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.5 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.1 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+(defrule cierra-dieta-menor-costo-grupo5-2
+         (declare (salience -10))
+         (rcd ?rcd)
+         ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
+                      (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
+                      (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
+                      (grupo2 ?grupo2) (grupos36 6) (grupo4 3) (grupo5 2) (grupo7 ?grupo7))
+         (test (= ?total-alimentos 11))
+         ; (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
+         (test (<= ?kcal-hidratos (* ?rcd 0.5 )))
+         (test (<= ?kcal-proteinas (* ?rcd 0.1 )))
+
+         =>
+         (modify ?d (estado cerrado))
+         )
+
+
+
 (defrule cierra-dieta-menor-costo
          (declare (salience -10))
          ?d <- (dieta (estado abierto) (kcal ?kcal)(total-alimentos ?total-alimentos)
                       (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
                       (kcal-grasas ?kcal-grasas) (gramos-grasa ?gramos-grasa) (alimentos $?alimentos) (grupo1 ?grupo1)
                       (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
-
+         (test (!= ?total-alimentos 1))
+         (test (!= ?total-alimentos 2))
+         (test (!= ?total-alimentos 3))
+         (test (!= ?total-alimentos 4))
+         (test (!= ?total-alimentos 5))
+         (test (!= ?total-alimentos 6))
+         (test (!= ?total-alimentos 7))
+         (test (!= ?total-alimentos 8))
+         (test (!= ?total-alimentos 9))
+         (test (!= ?total-alimentos 10))
+         (test (!= ?total-alimentos 11))
         (not (exists (dieta  (total-alimentos ?total-alimentos2&: (> ?total-alimentos2 ?total-alimentos )) (estado abierto))))
          ;(not (exists (dieta (kcal ?kcal2&: (> ?kcal2 ?kcal)) (total-alimentos ?total-alimentos))))
               =>
@@ -417,7 +609,7 @@
 (defrule elimina-nodos-excesivo-calorico
         (declare (salience 100))
         (rcd ?rcd)
-        ?d<- (dieta (kcal ?kcal&: (> ?kcal ?rcd)))
+        ?d<- (dieta (kcal ?kcal&: (> ?kcal (* ?rcd 1.05))))
         =>
         (retract ?d)
         )
@@ -425,7 +617,7 @@
 (defrule descarta-minimo-grupo1
          (declare (salience 100))
          (rcd ?rcd)
-         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (< ?kcal ?rcd)))
+         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))
                 (kcal-proteinas ?kcal-proteinas)  (alimentos $?alimentos)(grupo1 ?grupo1&: (< ?grupo1 2))
                 (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
          =>
@@ -434,7 +626,7 @@
 (defrule descarta-minimo-grupo2
          (declare (salience 100))
          (rcd ?rcd)
-         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (< ?kcal ?rcd)))
+         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))
                 (kcal-proteinas ?kcal-proteinas)  (alimentos $?alimentos)(grupo1 ?grupo1)
                 (grupo2 ?grupo2&: (< ?grupo2 2)) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
          =>
@@ -443,7 +635,7 @@
 (defrule descarta-minimo-grupos36
          (declare (salience 100))
          (rcd ?rcd)
-         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (< ?kcal ?rcd)))
+         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))
                 (kcal-proteinas ?kcal-proteinas)  (alimentos $?alimentos)(grupo1 ?grupo1)
                 (grupo2 ?grupo2) (grupos36 ?grupos36&: (< ?grupos36 4)) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
          =>
@@ -452,7 +644,7 @@
 (defrule descarta-minimo-grupo4
          (declare (salience 100))
          (rcd ?rcd)
-         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (< ?kcal ?rcd)))
+         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))
                 (kcal-proteinas ?kcal-proteinas)  (alimentos $?alimentos)(grupo1 ?grupo1)
                 (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4&: (< ?grupo4 2)) (grupo5 ?grupo5) (grupo7 ?grupo7))
          =>
@@ -461,7 +653,7 @@
 (defrule descarta-minimo-grupo5
          (declare (salience 100))
          (rcd ?rcd)
-         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.03))) (< ?kcal ?rcd)))
+         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))
                 (kcal-proteinas ?kcal-proteinas)  (alimentos $?alimentos)(grupo1 ?grupo1)
                 (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5&: (< ?grupo5 2)) (grupo7 ?grupo7))
          =>
@@ -470,7 +662,7 @@
 (defrule descarta-minimo-grasas
          (declare (salience 100))
          (rcd ?rcd)
-         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (< ?kcal ?rcd)))(gramos-grasa ?gramos-grasa&:(< ?gramos-grasa 40))
+         ?d<- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))(gramos-grasa ?gramos-grasa&:(< ?gramos-grasa 40))
                 (kcal-proteinas ?kcal-proteinas)  (alimentos $?alimentos)(grupo1 ?grupo1)
                 (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
          =>
@@ -479,12 +671,16 @@
 
 ;;; Regla que identifica un nodo solución
 (defrule identifica-solucion
+
          (declare (salience 99))
          (rcd ?rcd)
-         ?d <- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (< ?kcal ?rcd)))
+         ?a <- (usados (alimentos $?alimentos-usados))
+
+         ?d <- (dieta (kcal ?kcal&: (and (>= ?kcal (- ?rcd (* ?rcd 0.05))) (<= ?kcal (* ?rcd 1.05))))
                 (kcal-proteinas ?kcal-proteinas) (kcal-hidratos ?kcal-hidratos)
                 (kcal-grasas ?kcal-grasas)(alimentos $?alimentos)(grupo1 ?grupo1)
-                (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7))
+                (grupo2 ?grupo2) (grupos36 ?grupos36) (grupo4 ?grupo4) (grupo5 ?grupo5) (grupo7 ?grupo7)
+                      (estado ?estado&:(not (eq ?estado solucion))))
          =>
          (printout t "RCD: " ?rcd  crlf)
          (printout t "Dieta: " ?alimentos crlf)
@@ -502,19 +698,28 @@
          (printout t "Grupo 5: " ?grupo5 crlf)
          (printout t "Grupo 7: " ?grupo7 crlf)
          (modify ?d (estado solucion))
+         (modify ?a (alimentos $?alimentos-usados $?alimentos))
          ;borrar todas las dietas generadas
          ;conseguir que las siguientes dietas no repitan estos alimentos
          ;añadir lógica de alimentos repetibles
-         (assert (solucion-encontrada))(halt)
+         (assert (solucion-encontrada))
          )
 (defrule limpieza
          (declare (salience 100))
          (solucion-encontrada)
-         ?d <- (dieta (estado ?estado&:(or (eq ?estado abierto) (eq ?estado cerrado))))
+         ?d <- (dieta (estado ?estado&:(not (eq ?estado solucion))))
          =>
-         (retract d?)
+         (retract ?d)
 
                  )
+(defrule reinicio
+         (declare (salience 99))
+         ?s <- (solucion-encontrada)
+         =>
+         (retract ?s)
+         (assert (dieta ))
+
+         )
 ;;; Regla que se dispara solamente si ya no es posible encontrar la solución
 (defrule sin-solucion
          (declare (salience -100))

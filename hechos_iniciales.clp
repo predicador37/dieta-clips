@@ -49,15 +49,8 @@
              (multislot alimentos (type SYMBOL))
              )
 
-(deftemplate alimentos-usados
-             (multislot grupo1 (type SYMBOL))
-             (multislot grupo2 (type SYMBOL))
-             (multislot grupo3 (type SYMBOL))
-             (multislot grupo4 (type SYMBOL))
-             (multislot grupo5 (type SYMBOL))
-             (multislot grupo6 (type SYMBOL))
-             (multislot grupo7 (type SYMBOL))
-             )
+(deftemplate usados
+             (multislot alimentos (type SYMBOL)))
 
 (deftemplate racion
              (slot cantidad (type INTEGER))
@@ -77,19 +70,15 @@
 
 (deffacts introducir-auxiliares
           (dieta (dia lunes))
-          (alimentos-usados (grupo1))
-          (alimentos-usados (grupo2))
-          (alimentos-usados (grupo3))
-          (alimentos-usados (grupo4))
-          (alimentos-usados (grupo5))
-          (alimentos-usados (grupo6))
-          (alimentos-usados (grupo7))
+          (usados)
           (repetibles (alimentos  aceite-de-oliva miel almendra pan-integral chocolate-amargo))
           )
 
 (deffacts introducir-personas
-          (persona (nombre Miguel) (apellidos Exposito Martin) (edad 35) (sexo masculino) (peso 83) (actividad moderada) (objetivo reducir))
-          ;(persona (nombre Pepita) (apellidos Perez Lopez) (edad 38) (sexo masculino) (peso 64) (actividad ligera) (objetivo reducir))
+          ;(persona (nombre Miguel) (apellidos Exposito Martin) (edad 35) (sexo masculino) (peso 83) (actividad moderada) (objetivo reducir))
+          ;(persona (nombre Pepita) (apellidos Perez Lopez) (edad 38) (sexo femenino) (peso 64) (actividad ligera) (objetivo reducir))
+          ;(persona (nombre Hombre) (apellidos Gordo Grueso) (edad 70) (sexo masculino) (peso 95) (actividad reposo) (objetivo reducir))
+          (persona (nombre Mujer) (apellidos Esbelta Runner) (edad 30) (sexo femenino) (peso 60) (actividad intensa) (objetivo mantener))
           )
 
 (deffacts introducir-alimentos
