@@ -1,3 +1,48 @@
+# Introducción
+
+El presente documento sintetiza las decisiones tomadas a la hora de llevar a cabo la presente práctica. Cabe destacar que, como autor de este material, es la primera vez que mantengo un contacto con un sistema basado en reglas en general y con el entorno CLIPS en particular.
+
+# Entorno y ejecución
+
+Dada la similitud de la sintaxis de CLIPS con LISP, se optó por utilizar un Entorno Integrado de Desarrollo (IDE) para aprovechar funcionalidades como el resaltado de sintaxis. En concreto, se ha utilizado [IntelliJ IDEA](https://www.jetbrains.com/idea/) con un plugin de Clojure, cuya sintaxis es similar.
+
+El código se ha ejecutado con éxito tanto en entornos Windows como en entornos Linux. Para replicar su ejecución, y suponiendo que el ejecutable de clips esté en la variable de entorno `$PATH` del sistema correspondiente, desde el directorio raíz de la práctica en el que se encuentran todos los fuentes, hay que ejecutar las siguientes acciones **en orden**:
+
+        clips
+        (load ./hechos_iniciales.clp)
+        (load ./dieta.clp)
+        (reset)
+        (run)
+        
+Es decir, primero se cargan las plantillas y hechos iniciales y posteriormente las reglas. Con el comando `reset()` se inicializa la base de datos de hechos y las reglas quedan listas para ejecutarse.        
+
+# Enfoque
+
+La planificación del desarrollo de la práctica se ha dividido en cuatro grandes bloques:
+
+- Cálculo de los gastos energéticos y requerimiento calórico diario
+- Generación de combinaciones de alimentos (dietas) diarias
+- Reparto de alimentos de cada dieta en 5 comidas
+- Salida y entrada de datos
+
+La primera parte no revistió prácticamente dificultad, pudiéndose programar los cálculos en un tiempo razonable. En cambio, la generación de combinaciones de alimentos ha requerido de mucho tiempo y esfuerzo. La tercera parte presentó una dificultad media y la última fue muy sencilla.
+
+
+
+# Modelo de conocimiento
+
+# Sistema de reglas
+
+## Primeros pasos
+
+En primer lugar, se trató de plantear el problema siguiendo como modelo el ejercicio número 11 de la colección de problemas (composición de programas musicales en emisoras de radio). Debido a mi conocimiento, formación y experiencia en lenguajes procedimentales y orientados a objetos, este enfoque trataba de conseguir que las reglas se ejecutaran como si de uno de estos lenguajes se trataran, lo cual resultó contraproducente. Se generaron muchas reglas, muchas variables de control por fases, muchas excepciones a los casos generales... 
+
+
+
+
+
+
+
 Reglas:
 
 suma total de calorias < geb + geba
