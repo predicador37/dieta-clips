@@ -16,11 +16,7 @@
              (slot comida (type SYMBOL) (allowed-symbols si no))
              (slot merienda (type SYMBOL) (allowed-symbols si no))
              (slot cena (type SYMBOL) (allowed-symbols si no))
-             (slot lunes (type NUMBER) (default 0))
-             (slot martes (type NUMBER) (default 0))
-             (slot miercoles (type NUMBER) (default 0))
-             (slot jueves (type NUMBER) (default 0))
-             (slot viernes (type NUMBER) (default 0))
+
              )
 
 (deftemplate persona
@@ -140,12 +136,6 @@
              (multislot alimentos (type SYMBOL)))
 
 
-(deftemplate repetibles
-             (multislot cinco (type SYMBOL))
-             (multislot tres (type SYMBOL))
-             (multislot dos (type SYMBOL))
-             )
-
 (deftemplate dia
              (slot nombre (type SYMBOL) (allowed-symbols lunes martes miercoles jueves viernes))
              )
@@ -162,17 +152,6 @@
           (usados-reparto (dia viernes))
 
           )
-
-(deffacts introducir-personas
-          ;(persona (nombre nena) (apellidos mujer) (edad 5) (sexo femenino) (peso 18) (actividad intensa) (objetivo mantener))
-          ;(persona (nombre adolescente) (apellidos hombre) (edad 15) (sexo masculino) (peso 70) (actividad moderada) (objetivo mantener))
-          ;(persona (nombre Miguel) (apellidos Exposito Martin) (edad 35) (sexo masculino) (peso 83) (actividad moderada) (objetivo reducir))
-          ;(persona (nombre Pepita) (apellidos Perez Lopez) (edad 38) (sexo femenino) (peso 64) (actividad ligera) (objetivo reducir))
-          (persona (nombre Pepita) (apellidos Perez Lopez) (edad 37) (sexo femenino) (peso 56) (actividad ligera) (objetivo reducir))
-          ;(persona (nombre Hombre) (apellidos Gordo Grueso) (edad 70) (sexo masculino) (peso 95) (actividad reposo) (objetivo reducir))
-          ;(persona (nombre Mujer) (apellidos Esbelta Runner) (edad 30) (sexo femenino) (peso 60) (actividad intensa) (objetivo mantener))
-          )
-
 
 (deffacts introducir-comidas
           (desayuno-dieta (dia-desayuno lunes))

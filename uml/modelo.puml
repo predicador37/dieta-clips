@@ -1,0 +1,85 @@
+@startuml
+class Alimento {
++id: Integer
++nombre: Symbol
++grupo: Integer
++veces: Integer
++tipo: Symbol
++mono: Symbol
++kcal: Number
++racion: Number
++proteinas: Number
++grasas: Number
++grasas+mono: Number
++hidratos: Number
++desayuno: Symbol
++almuerzo: Symbol
++comida: Symbol
++merienda: Symbol
++cena: Symbol
+
+}
+
+class Dieta {
++dia: Symbol
++estado: Symbol
++kcal: Number
++kcal-proteinas: Number
++kcal-hidratos: Number
++kcal-grasas: Number
++kcal-grasas-mono: Number
++gramos-grasa: Number
++total-alimentos: Integer
++grupo1: Integer
++grupo2: Integer
++grupo3: Integer
++grupos36: Integer
++grupo4: Integer
++grupo5: Integer
++grupo6: Integer
++grupo7: Integer
++alimentos: Symbol
++ids: Integer
+}
+
+class Persona {
++nombre: Symbol
++apellidos: Symbol
++edad: Integr
++sexo: Symbol
++peso: Number
++actividad: Symbol
++objetivo: Symbol
+
+}
+
+class Desayuno {
+
+}
+
+class Almuerzo {
+
+}
+
+class Comida {
+
+}
+
+class Merienda {
+
+}
+
+class Cena {
+
+}
+
+Desayuno -up-|> Dieta
+Almuerzo -up-|> Dieta
+Comida -up-|> Dieta
+Merienda -up-|> Dieta
+Cena -up-|> Dieta
+Dieta -up-> "se compone de" Alimento
+
+Persona -left-> "hace" Dieta
+
+@end

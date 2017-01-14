@@ -1,0 +1,98 @@
+@startuml
+[*] --> hidratos_1
+hidratos_1:grupo 3
+hidratos_1: hidratos < 0.5 rcd
+hidratos_1: proteinas < 0.05 rcd
+hidratos_1: 0.02 rcd < grasas-mono < 0.05 rcd
+
+hidratos_1 --> hidratos_2
+hidratos_2: grupo 3
+hidratos_2: hidratos < 0.45 rcd
+hidratos_2: proteinas < 0.06 rcd
+hidratos_2: grasas-mono < 0.12 rcd
+
+hidratos_2 --> hidratos_3
+hidratos_3: grupos 3,6
+hidratos_3: 0.45 * 0.5 rcd < hidratos < 0.45 rcd
+hidratos_3: proteinas < 0.07 rcd
+hidratos_3: grasas < 0.35 * 0.2 rcd
+
+hidratos_3 --> hidratos_4
+hidratos_4: grupos 3,6
+hidratos_4: hidratos < 0.45 rcd
+hidratos_4: proteinas < 0.075 rcd
+
+hidratos_4 --> hidratos_5
+hidratos_5: grupos 3,6
+hidratos_5: hidratos < 0.45 rcd
+hidratos_5: proteinas < 0.08 rcd
+
+hidratos_5 --> hidratos_6
+hidratos_6: grupos 3,6
+hidratos_6: 0.40 rcd < hidratos < 0.45 rcd
+hidratos_6: proteinas < 0.08 rcd
+hidratos_3: grasas < 0.35 * 0.3 rcd
+
+hidratos_6 --> verduras_1
+verduras_1: grupo 4
+verduras_1: hidratos < 0.48 rcd
+verduras_1: proteinas < 0.09 rcd
+
+verduras_1 --> verduras_2
+verduras_2: grupo 4
+verduras_2: hidratos < 0.49 rcd
+verduras_2: proteinas < 0.1 rcd
+
+verduras_2 --> verduras_3
+verduras_3: grupo 4
+verduras_3: hidratos < 0.5 rcd
+verduras_3: proteinas < 0.11 rcd
+
+verduras_3 --> frutas_1
+frutas_1: grupo 5
+frutas_1: hidratos < 0.52 rcd
+frutas_1: proteinas < 0.12 rcd
+frutas_1: grasas-mono < 0.13 rcd
+frutas_1: grasas < 0.35 * 0.55 rcd
+
+frutas_1 --> frutas_2
+frutas_2: grupo 5
+frutas_2: hidratos < 0.54 rcd
+frutas_2: proteinas < 0.13 rcd
+frutas_2: grasas-mono < 0.13 rcd
+frutas_2: grasas < 0.35 * 0.55 rcd
+
+frutas_2 --> lacteos_1
+lacteos_1: grupo 1
+lacteos_1: hidratos < 0.56 rcd
+lacteos_1: proteinas < 0.14 rcd
+lacteos_1: grasas < 0.35 * 0.6 rcd
+
+lacteos_1 --> lacteos_2
+lacteos_2: grupo 1
+lacteos_2: proteinas < 0.14 rcd
+lacteos_2: grasas < 0.35 * 0.6 rcd
+
+lacteos_2 --> proteinas_1
+proteinas_1: grupo 2
+proteinas_1: proteinas < 0.15 rcd
+proteinas_1: grasas < 0.35 * 0.63 rcd
+
+proteinas_1 --> proteinas_2
+proteinas_2: grupo 2
+proteinas_2: proteinas < 0.16 rcd
+proteinas_2: grasas < 0.35 * 0.8 rcd
+
+proteinas_2 --> grasas_1
+grasas_1: grupo 7
+grasas_1: 0.14 rcd < grasas-mono < 0.21 rcd
+
+grasas_1 --> grasas_2
+grasas_2: grupo 7
+grasas_2: 0.14 rcd < grasas-mono < 0.21 rcd
+
+grasas_2 --> otro
+otro: max (alimentos)
+
+otro --> [*]
+@end
