@@ -1,9 +1,10 @@
-% Ingeniería y Gestión del Conocimiento: práctica 1
-% Miguel Expósito Martín - 72056097H
+% Ingeniería y Gestión del Conocimiento
+% Práctica 1: desarrollo de un planificador de dietas con CLIPS
+% Miguel Expósito Martín - DNI: 72056097H, Tlf. 626509868, e-mail:mexposito37@alumnos.uned.es,  Calle El Campizo 10, 2ºA, CP 39012 Santander (Cantabria)
 
 # Introducción
 
-El presente documento sintetiza las decisiones tomadas a la hora de llevar a cabo la presente práctica. Cabe destacar que, como autor de este material, es la primera vez que mantengo un contacto con un sistema basado en reglas en general y con el entorno CLIPS en particular.
+El presente documento sintetiza las decisiones tomadas a la hora de llevar a cabo la presente práctica de **desarrollo de un planificador de dietas**. Cabe destacar que, como autor de este material, es la primera vez que mantengo un contacto con un sistema basado en reglas en general y con el entorno CLIPS en particular.
 
 # Entregables
 
@@ -45,9 +46,30 @@ La primera parte no revistió prácticamente dificultad, pudiéndose programar l
 
 El modelo utilizado para la práctica se ha simplificado al máximo de cara a minimizar cualquier complejidad derivada de su estructura a lo largo del desarrollo de la misma. Básicamente consta de las siguientes entidades principales:
 
-- Persona: contiene los hechos asociados a una persona, introducidos por teclado.
-- Alimento: contiene los hechos asociados a los distintos alimentos (calorías, proteinas, etc.); los datos se han obtenido de diversas fuentes en Internet [Ver referencia](). Todos los datos de macronutrientes y calorías están referidos a 100g de alimentos. Como parte de la información relativa a alimentos se encuentra el campo **ración**. Este **se ha completado con las cantidades normales para una dieta para adultos de en torno a 2000 kcal diarias**, con datos extraídos de diversos artículos sobre nutrición. A partir de ahí, se han añadido raciones mayores y menores con objeto de ofrecer más flexibilidad a la hora de seleccionar alimentos/raciones necesarios para la dieta.
-- Dieta: contiene los hechos asociados a una dieta: sus calorías totales, proteinas totales, etc. así como los alimentos asociados. Las entidades de tipo dieta son generadas por el sistema, con lo que se trata de conocimiento adquirido a lo largo de la ejecución del programa.
+## Entidad Persona
+
+Contiene los hechos asociados a una persona, introducidos por teclado.
+
+## Entidad Alimento
+
+Contiene los hechos asociados a los distintos alimentos (calorías, proteinas, etc.); los datos se han obtenido de diversas fuentes en Internet ([[1]][1], [[2]][2] y [[3]][3]). Todos los datos de macronutrientes y calorías están referidos a 100g de alimentos. 
+
+Como parte de la información relativa a alimentos se encuentra el campo **ración**; este **se ha completado con las cantidades normales para una dieta para adultos de en torno a 2000 kcal diarias**, con datos extraídos de diversos artículos sobre nutrición. A partir de ahí, se han añadido raciones mayores y menores con objeto de ofrecer más flexibilidad a la hora de seleccionar alimentos/raciones necesarios para la dieta.
+
+También presenta slots para almacenar las preferencias del usuario para las cinco comidas diarias y el número de veces que pueden tomarse a la semana (1, 2, 3 ó 5).
+
+
+## Entidad Dieta
+
+Contiene los hechos asociados a una dieta: sus calorías totales, proteinas totales, etc. así como los alimentos asociados. Las entidades de tipo dieta son generadas por el sistema, con lo que se trata de conocimiento adquirido a lo largo de la ejecución del programa.
+
+Presenta un conjunto de slots que actúan como contadores y/o contabilizadores del número de alimentos de cada grupo y cantidad de macronutrientes totales. 
+
+Sus dos valores de tipo multislot almacenan nombres e identificadores de alimentos; el primero se utilizó para depurar las combinaciones de dietas y el segundo permite llevar a cabo búsquedas de detalle por alimento o `lookups` en la fase de reparto en cinco comidas.
+ 
+ Otro slot importante es el de estado, con posibles valores `abierto`, `cerrado` y `solucion`, que controla los estados de los nodos del árbol que genera el algoritmo implementado con reglas.
+
+## Otras entidades
 
 Al margen de estas entidades, se tienen las derivadas de la dieta (desayuno, almuerzo, etc.) y otras auxiliares utilizadas fundamentalmente para llevar un control del día cuya dieta se está generando, alimentos repetidos entre días, etc.
 
@@ -106,6 +128,9 @@ Para generar los hechos asociados a los alimentos se ha utilizado una hoja de c�
 
 ## Entrada de datos
 
+Para la entrada de hechos se ha utilizado la función `read` de CLIPS, almacenando los valores leídos en hechos ordenados sencillos. Una vez recuperados todos los valores necesarios, otra regla construye un hecho de tipo `persona`, que será el que disparará la ejecución de los gastos energéticos.
+ 
+ Además, se ha incluido una función de validación de la entrada para los datos no numéricos (sexo, objetivo y actividad) que impide la entrada de valores incorrectos (que no sean los especificados a la hora de realizar la petición de datos).
 
 ## Cálculo de gastos energéticos y requerimiento calórico diario
 
@@ -123,7 +148,9 @@ Finalmente, se trató de darle al problema el mismo enfoque que al "problema de 
 
 Tan sólo restaba establecer el criterio de decisión para "cerrar" un nodo. En principio se trató de maximizar el número de calorías, pero las combinaciones de alimentos resultantes estaban muy alejadas de las requeridas. Posteriormente se estableció como criterio maximizar el número de alimentos elegidos hasta la fecha en la dieta, lo que proporcionaba soluciones esporádicamente y con un rendimiento no aceptable (decenas de minutos).
 
-A la vista de los resultados, se trató de "guiar" al algoritmo obligando a seleccionar determinados alimentos por fases. En este punto se probaron diversos criterios: elegir primero los alimentos proteicos, las grasas... ninguno conseguía que el algoritmo encontrara soluciones en tiempos razonables. Por ello, se optó por consultar un manual de alimentación y nutrición y documentación diversa sobre la confección de dietas ([referencias]()). En todos ellos se indicaba que **el primer grupo de alimentos que debe ser seleccionado es el de carbohidratos** y que, una vez alcanzado el requisito calórico de este macronutriente, se proporcionaría a su vez el 50% de las proteinas necesarias. Asimismo, en dicho manual se indica que se ha de seguir con verduras y frutas para terminar con lácteos y proteínas, quedando en último lugar las grasas. Este ha sido el criterio usado para guiar al algoritmo.
+A la vista de los resultados, se trató de "guiar" al algoritmo obligando a seleccionar determinados alimentos por fases. En este punto se probaron diversos criterios: elegir primero los alimentos proteicos, las grasas... ninguno conseguía que el algoritmo encontrara soluciones en tiempos razonables. Por ello, se optó por consultar un [manual de alimentación y nutrición][5] y documentación diversa sobre la confección de 
+dietas ([UCM][6],[Xunta Galicia][7]). En todos ellos se indicaba que **el primer grupo de alimentos que debe ser seleccionado es el de carbohidratos** y que, una vez alcanzado el requisito calórico de este macronutriente, se proporcionaría a su vez el 50% de las proteinas necesarias. Asimismo, en dicho manual se indica que se ha de seguir con verduras y frutas para terminar con lácteos y proteínas, quedando en último lugar las grasas. Este ha sido el criterio usado para 
+guiar al algoritmo, que no deja de ser un criterio de experto ajeno al enunciado y añadido con posterioridad al sistema.
 
 ### Generación de dietas
 
@@ -134,6 +161,16 @@ La generación de las nuevas dietas se realiza de forma que el alimento no se ha
 Las reglas de los distintos operadores se lanzan cuando se ha calculado el requerimiento calórico diario y existe una entidad de tipo dieta.
 
 Hay que tener en cuenta que, si bien es posible seleccionar entre distintas raciones para un mismo alimento, esta selección solo puede llevarse a cabo una vez en el mismo día. Es decir, la ración escogida será la definitiva; a partir de ahí, el alimento pasará a estar en la lista de utilizados y no será reutilizable en dicha dieta.
+
+La contabilización de calorías para las dietas generadas se realiza de la siguiente forma:
+
+        kcal-dieta = kcal-dieta + (kcal-alimento * racion / 100)
+        kcal-proteinas-dieta = kcal-proteinas-dieta + (kcal-proteinas-alimento * 4 * racion / 100)
+        kcal-hidratos-dieta = kcal-hidratos-dieta + (kcal-hidratos-dieta * 4 * racion / 100)
+        kcal-grasas = kcal-grasas-dieta + (kcal-grasas-dieta * 9 * racion / 100)
+        kcal-grasas-mono = kcal-grasas-mono-dieta + (kcal-grasas-mono-dieta * 9 * racion / 100)
+
+El cálculo de grasas monoinsaturadas sólo se realiza en aquellos grupos de alimentos en los que existen alimentos ricos en este tipo de grasas, hasta el punto de que su contribución de grasas puede considerarse prácticamente en su totalidad como de este tipo (ej: almendras, aceite de oliva, etc).
 
 ### Selección de dietas
  
@@ -230,8 +267,10 @@ Las distribuciones de calorías y alimentos no son exactas. Esto se debe al car�
  
 # Otras consideraciones
 
-En el foro de la asignatura se han comentado situaciones anómalas, como la incapacidad para diseñar dietas con 40-60 g de grasa en menores de tres años. Es evidente que, en lactantes, tanto la grasa como el resto de macronutrientes se aportan a través de la leche materna. En cualquier caso, los valores manejados en el enunciado de la práctica se refieren a sujetos adultos según la literatura [Referencia](). Estos porcentajes cambian para menores de tres años (ver [Referencia]()).  Es por ello que no se plantea acción alguna en el programa, que debería usarse con sentido común y sólo para dietas a partir de los 4 años.
+En el foro de la asignatura se han comentado situaciones anómalas, como la incapacidad para diseñar dietas con 40-60 g de grasa en menores de tres años. Es evidente que, en lactantes, tanto la grasa como el resto de macronutrientes se aportan a través de la leche materna. En cualquier caso, los valores manejados en el enunciado de la práctica se refieren a sujetos adultos según la literatura [[5]][5]. Estos porcentajes 
+cambian para menores de tres años (ver [referencia][9]).  Es por ello que **no se plantea acción alguna en el programa, que debería usarse con sentido común y sólo para dietas a partir de los 4 años**.
 
+\pagebreak
 
 # Evaluación del funcionamiento del programa
 
@@ -1269,11 +1308,14 @@ En el foro de la asignatura se han comentado situaciones anómalas, como la inca
                  Deficit calorico: -222.450000000001 kcal
         -------------------------------------------------------------
 
+\pagebreak
+
 # Conclusiones y líneas de trabajo futuras
 
-Con el desarrollo presentado se han cumplido todos los requisitos expuestos en el enunciado de la práctica. Cabe resaltar la dificultad que ha supuesto para el autor de esta práctica el cambio de paradigma de programación estructurada y orientada objetos a la orientada a reglas. Recordar la sintaxis de LISP ha supuesto un problema menor, pero también a tener en cuenta. La forma de pensar y razonar a la hora de resolver problemas con sistemas orientados a reglas y a conocimiento cambia con respecto a la forma tradicional. Una ayuda para realizar la transición con éxito puede ser la  programación declarativa, tomando como ejemplo lenguajes de uso común como el SQL de consultas a bases de datos. 
+Con el desarrollo presentado **se han cumplido todos los requisitos expuestos en el enunciado de la práctica**, tal y como se puede comprobar con los perfiles evaluados. Cabe resaltar la dificultad que ha supuesto para el autor de esta práctica el cambio de paradigma de programación estructurada y orientada objetos a la orientada a reglas. Recordar la sintaxis de LISP ha supuesto un problema menor, pero también a tener en cuenta. La forma de pensar y razonar a la hora de resolver problemas con sistemas orientados a reglas y a conocimiento cambia con respecto a la forma tradicional. Una ayuda para realizar la transición con éxito puede ser la  programación declarativa, tomando como ejemplo lenguajes de uso común como el SQL de consultas a bases de datos. 
  
-Lamentablemente, los foros de la asignatura en esta ocasión no han sido de suficiente ayuda. De ahí que haya sido  necesario dedicar más tiempo y consultar otras fuentes. Para el aprendizaje y familiarización con el lenguaje CLIPS se ha utilizado el texto de apoyo específico de la Universidad de Córdoba, citado en las [Referencias](). El problema planteado en la práctica ha suscitado el interés del autor con lo que, además de consultar diversas fuentes en Internet, se ha adquirido y utilizado un manual teórico práctico de  nutrición elaborado por profesoras colaboradoras con la UNED y la UAM Madrid (ver [Referencias]()). Gracias a este manual se ha podido resolver parte de la práctica y obtener ideas para mejoras futuras que se expondrán a continuación.
+Lamentablemente, los foros de la asignatura en esta ocasión no han sido de suficiente ayuda. De ahí que haya sido  necesario dedicar más tiempo y consultar otras fuentes. Para el aprendizaje y familiarización con el lenguaje CLIPS se ha utilizado el texto de apoyo específico de la Universidad de Córdoba, citado en la referencia [[8]][8]. El problema planteado en la práctica ha suscitado el interés del autor con lo que, 
+además de consultar diversas fuentes en Internet, se ha adquirido y utilizado un manual teórico práctico de  nutrición elaborado por profesoras colaboradoras con la UNED y la UAM Madrid (ver [[5]][5]). Gracias a este manual se ha podido resolver parte de la práctica y obtener ideas para mejoras futuras que se exponen a continuación.
  
 El sistema desarrollado puede mejorarse con las siguientes propuestas concretas:
  
@@ -1291,11 +1333,40 @@ fibra alimentaria, vitaminas, índice glucémico, etc.
 
 En resumen, a pesar del esfuerzo invertido debido a la dificultad encontrada para la realización de la práctica, el 
 interés suscitado tanto en el ámbito de la nutrición como de los sistemas basados en reglas ha sido grande, como se 
-puede comprobar por las líneas de trabajo sugeridas. En opinión del alumno, se ha conseguido enfocar el desarrollo para obtener una solución razonable utilizando el paradigma indicado y que cumple con los requisitos expuestos. 
+puede comprobar por las líneas de trabajo sugeridas. En opinión del alumno, se ha conseguido enfocar el desarrollo para obtener una solución razonable utilizando el paradigma indicado y que cumple con los requisitos expuestos, comprendiendo las posibilidades de uso de un sistema basado en reglas. Sería interesante y enriquecedor intentar resolver el problema de otra forma, enfocándolo quizá dentro del tipo de problemas de optimización multivariable, y comparar resultados y paradigmas; se deja esta cuestión para la inquietud del lector.
+
+\pagebreak
 
 # Referencias
+\[1\] [Tabla de calorías de los aceites y grasas][1]
 
+\[2\] [Guía de alimentos e información nutricional de Mujer de Élite][2]
 
+\[3\] [Tabla de alimentos e información nutricional de Blog Mountain Bike Revolution][3]
+
+\[4\] [Artículo sobre ácidos grasos monoinsaturados en Vitonica.com][4]
+
+\[5\] [Alimentación y Nutrición, Manual Teórico Práctico][5], Clotilde Vázquez Martínez, 
+Consuelo López-Nomdedeu, Ana Isabel de Cos Blanco.
+
+\[6\] [Manual de Nutrición y Dietética, Diseño y programación de dietas][6], Universidad Complutense de MAdrid. 
+
+\[7\] [Elaboración de dietas][7], Xunta de Galicia, Licenciada en Nutrición María del Carmen Iñarritu Pérez.
+
+\[8\] [Programación en lenguaje CLIPS][8], Antonio Calvo Cuenca, Carlos García Martínez, Pedro González Espejo, Cristóbal Romero Morales, Sebastián Ventura Soto.
+
+\[9\] [Los lípidos en la alimentación de niños y adolescentes][9], CESNI, Alicia Rovirosa.
+
+[1]: http://caloriasynutrientes.com/tabla-de-calorias-de-los-aceites-y-grasas/ "Tabla de calorías de los aceites y 
+grasas"
+[2]: http://www.mujerdeelite.com/guia_de_alimentos/ "Guía de alimentos e información nutricional de Mujer de Élite"
+[3]: http://www.blogsasociados.com/mountain-bike/tabla-de-calorias-proteinas-grasas-e-hidratos-de-carbono-de-los-alimentos "Tabla de alimentos e información nutricional de Blog Mountain Bike Revolution"
+[4]: https://www.vitonica.com/alimentos/acidos-grasos-monoinsaturados-lo-que-tienes-que-saber "Artículo sobre ácidos grasos monoinsaturados en Vitonica.com"
+[5]: https://www.amazon.es/Alimentacion-y-nutricion-manual-teorico-practico/dp/8479783761 "Alimentación y Nutrición, Manual Teórico Práctico"
+[6]: https://www.ucm.es/data/cont/docs/458-2013-08-18-cap-21-dise%C3%B1o-dietas.pdf " Manual de Nutrición y Dietética, Diseño y programación de dietas"
+[7]: http://www.edu.xunta.gal/centros/ieschapela/system/files/ELABORACI%C3%93N%20DIETAS_1.pdf "Elaboración de dietas"
+[8]: https://www.amazon.es/Programaci%C3%B3n-En-Lenguaje-Clips-Manuales/dp/8480048794/ref=sr_1_1?s=books&ie=UTF8&qid=1484395070&sr=1-1&keywords=programacion+en+lenguaje+clips "Programación en lenguaje CLIPS"
+[9]: http://www.cesni.org.ar/sistema/archivos/193-Loslipidosenlaalimentaciondeni%F1osyadolescentesBioqAliciaRovirosa.pdf, "Los lípidos en la alimentación de niños y adolescentes"
 
 
 

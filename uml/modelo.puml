@@ -10,7 +10,7 @@ class Alimento {
 +racion: Number
 +proteinas: Number
 +grasas: Number
-+grasas+mono: Number
++grasas-mono: Number
 +hidratos: Number
 +desayuno: Symbol
 +almuerzo: Symbol
