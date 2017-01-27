@@ -32,39 +32,47 @@
           (tarifas (origen Barcelona) (destino Santiago) (carta 8) (paquete 15))
           (suplementos (tipo urgente) (valor 6))
           (suplementos (tipo peso) (valor 1))
-          (envios (origen Madrid) (destino Toledo) (tipo paquete) (peso 3) (urgente si))
+          (envios (origen Madrid) (destino Toledo) (tipo paquete) (peso 5) (urgente si))
           )
 
 
 (defrule calcular-tarifa-basica-carta
-         ?e <- (envios (origen ?origen) (destino ?destino) (tipo ?tipo&:(eq ?tipo carta)) )
+         ?e <- (envios (origen ?origen) (destino ?destino) (tipo ?tipo&:(eq ?tipo carta))(urgente ?urgente)(peso
+                                                                                                             ?peso) )
          ?t <- (tarifas (origen ?origen) (destino ?destino) (carta ?carta))
          =>
          (assert (coste (valor ?carta)))
-
+         (assert (urgente ?urgente))
+         (assert (peso ?peso))
          )
 
 (defrule calcular-tarifa-basica-paquete
-         ?e <- (envios (origen ?origen) (destino ?destino) (tipo ?tipo&:(eq ?tipo paquete)) )
+         ?e <- (envios (origen ?origen) (destino ?destino) (tipo ?tipo&:(eq ?tipo paquete))(urgente ?urgente)(peso
+                                                                                                               ?peso) )
          ?t <- (tarifas (origen ?origen) (destino ?destino) (paquete ?paquete))
 
          =>
 
          (assert (coste (valor ?paquete)))
+         (assert (urgente ?urgente))
+         (assert (peso ?peso))
          )
 
 (defrule calcular-tarifa-suplemento-urgente
          ?c <- (coste (valor ?coste))
-         ?e <- (envios (origen ?origen) (destino ?destino) (urgente ?urgente&:(eq ?urgente si)))
+         ?u <- (urgente si)
          (suplementos (tipo urgente)(valor ?v))
          =>
          (modify ?c (valor (+ ?coste ?v)))
+         (retract ?u)
          )
 
 (defrule calcular-tarifa-suplemento-peso
          ?c <- (coste (valor ?coste))
-         ?e <- (envios (origen ?origen) (destino ?destino) (peso ?peso&:(> ?peso 2)))
+         ?p <- (peso ?peso)
+         (test (> ?peso 2))
          (suplementos (tipo peso)(valor ?v))
          =>
-         (modify ?c (valor (+ ?coste ?v)))
+         (modify ?c (valor (+ ?coste (* (/ (- (* ?peso 1000) 2000) 100) ?v))))
+         (retract ?p)
          )
